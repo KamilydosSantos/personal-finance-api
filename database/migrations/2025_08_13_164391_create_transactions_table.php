@@ -19,8 +19,8 @@ return new class extends Migration
             $table->enum('type', ['income', 'expense']);
             $table->string('description')->nullable();
             $table->decimal('amount', 15, 2);
-            $table->date('date');
             $table->unsignedInteger('installments')->default(1);
+            $table->date('date');
             $table->timestamps();
         });
     }

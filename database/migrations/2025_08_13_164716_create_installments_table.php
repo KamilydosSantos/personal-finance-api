@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('installments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('transaction_id')->constrained()->onDelete('cascade');
-            $table->foreignId('payment_method_id')->constrained()->onDelete('cascade');
+            $table->unsignedInteger('installment_number');
             $table->decimal('amount', 15, 2);
             $table->date('due_date');
             $table->boolean('paid')->default(false);
+            $table->date('paid_at')->nullable();
             $table->timestamps();
         });
     }
