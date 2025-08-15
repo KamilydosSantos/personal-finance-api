@@ -50,4 +50,21 @@ class UserService
 
         return $this->userRepository->findById($userId);
     }
+
+    public function deleteUser(int $userId)
+    {
+        $user = $this->userRepository->findById($userId);
+
+        if (!$user || $user->id !== auth()->id()) {
+            throw new \Exception('Usuário não encontrado ou não autorizado');
+        }
+
+        $deleted = $this->userRepository->delete($userId);
+
+        if (!$deleted) {
+            throw new \Exception('Erro ao deletar usuário');
+        }
+
+        return true;
+    }
 }
