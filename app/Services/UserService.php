@@ -35,4 +35,19 @@ class UserService
 
         return $user;
     }
+
+    public function updateUser(int $userId, array $data)
+    {
+        if (isset($data['password'])) {
+            $data['password'] = Hash::make($data['password']);
+        }
+
+        $updated = $this->userRepository->update($userId, $data);
+
+        if (!$updated) {
+            throw new \Exception('Erro ao atualizar usuário');
+        }
+
+        return $this->userRepository->findById($userId);
+    }
 }
