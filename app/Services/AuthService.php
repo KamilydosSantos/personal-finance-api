@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\User;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use Illuminate\Support\Facades\Hash;
 use Exception;
@@ -29,5 +30,10 @@ class AuthService
             'user' => $user,
             'token' => $token,
         ];
+    }
+
+    public function logout(User $user): void
+    {
+        $user->tokens()->delete();
     }
 }
