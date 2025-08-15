@@ -24,4 +24,15 @@ class UserService
     {
         return $this->userRepository->findById($id);
     }
+
+    public function getAuthenticatedUser()
+    {
+        $user = $this->userRepository->getAuthenticatedUser();
+
+        if (!$user) {
+            throw new \Exception('Usuário não autenticado');
+        }
+
+        return $user;
+    }
 }
