@@ -8,6 +8,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 
     Route::get('/users/me', [UserController::class, 'show']);
+    Route::put('/users/me', [UserController::class, 'update']);
 });
 
 Route::post('/users', [UserController::class, 'store']);
