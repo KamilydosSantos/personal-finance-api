@@ -6,6 +6,8 @@ use App\Http\Controllers\AuthController;
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
+
+    Route::get('/users/me', [UserController::class, 'show']);
 });
 
 Route::post('/users', [UserController::class, 'store']);
