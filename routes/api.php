@@ -9,6 +9,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/users/me', [UserController::class, 'show']);
     Route::put('/users/me', [UserController::class, 'update']);
+    Route::delete('/users/me', [UserController::class, 'destroy']);
 });
 
 Route::post('/users', [UserController::class, 'store']);
